@@ -52,6 +52,7 @@ public class Ride {
         result=acc%47;
         System.out.println(result);
         System.out.println(s1);
+
 //        while(st.hasMoreElements()){
 //            System.out.println(st.nextToken());
 //        }
