@@ -7,14 +7,35 @@
  */
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 
 public class Ride {
     public static final String IN_FILE = "./in_file/";
     public static final String OUT_FILE = "./out_file/";
+    public static String readTxt(){
+        StringBuffer sb=new StringBuffer();
+        String line=null;
+        try{
+            File file=new File(IN_FILE);
+            if(!file.exists())
+                    throw new FileNotFoundException();
+            FileInputStream fis=new FileInputStream(file);
+            BufferedReader br=new BufferedReader(new InputStreamReader(fis));
+            line=br.readLine();
+            while(line!=null){
+                line=br.readLine();
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
 
 //    public int char2num(String str){
 //    return 0;
@@ -38,6 +59,8 @@ public class Ride {
         BufferedReader f = new BufferedReader(new FileReader(IN_FILE + "ride.in"));
         StringTokenizer st = new StringTokenizer(f.readLine(),"\n");
         String s1=st.nextToken();
+        System.out.println(s1);
+
         int i=0;
         System.out.println(s1.length());
         int acc=1;
@@ -53,6 +76,7 @@ public class Ride {
         System.out.println(result);
         System.out.println(s1);
 
+        readTxt();
 //        while(st.hasMoreElements()){
 //            System.out.println(st.nextToken());
 //        }
