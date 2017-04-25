@@ -8,4 +8,5 @@
 public class Gift {
     public static final String IN_FILE = "./in_file/";
     public static final String OUT_FILE = "./out_file/";
+
 }
