@@ -6,6 +6,7 @@
  * Created by Administrator on 2017/4/22.
  */
 public class Gift {
+
     public static final String IN_FILE = "./in_file/";
     public static final String OUT_FILE = "./out_file/";
 
