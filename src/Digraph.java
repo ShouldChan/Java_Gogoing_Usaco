@@ -13,6 +13,14 @@ public class Digraph{
     private int numEdges = 0;
     private int maxWeight = Integer.MAX_VALUE;
 
+//    public int[][] getEdge() {
+//        return Edge;
+//    }
+//
+//    public void setEdge(int[][] edge) {
+//        Edge = edge;
+//    }
+
     public Digraph(int size) {
         this.maxVertices = size;
         this.numVertices = 0;
