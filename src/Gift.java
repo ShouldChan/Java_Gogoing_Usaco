@@ -116,10 +116,31 @@ public class Gift {
 
             //2. "dave" "200 3" "laura" "owen" "vick"
 
-            int one = map.get(readAppointedLineNumber(file, lines++));
+            int v1 = map.get(readAppointedLineNumber(file, lines++));
             String two = readAppointedLineNumber(file, lines++);
             String[] two_array=two.split(" ");
+            int a,b=0;
+            for(int i=0;i<two_array.length;i++){
+                if(i==0) {
+                    a=Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("a: "+a);
+                }
+                else if(i==1){
+                    b=Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("b: "+b);
+                }
 
+            }
+
+            while(b<=0){
+                String name=readAppointedLineNumber(file,++lines);
+                int v2=map.get(name);
+
+                dg.setEdge(v1,v2,a);
+                b--;
+            }
             br.close();
             in.close();
 
