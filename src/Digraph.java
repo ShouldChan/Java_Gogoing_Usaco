@@ -14,7 +14,7 @@ public class Digraph{
     private int maxWeight = Integer.MAX_VALUE;
 
 
-    public void setEdge(int i,int j,int value) {
+    public void setEdge(int i,int j,Integer value) {
         Edge[i][j]= value;
     }
 
