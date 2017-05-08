@@ -102,8 +102,10 @@ public class Gift {
             int lines = 2;    //start from the second, and map them
             int total_num = Integer.parseInt(eachline);   // convert str to int
             System.out.println("Total numbers of people: " + total_num);
+            int[][] matrix=new int[total_num][total_num];
 
-            Digraph dg = new Digraph(lines);
+
+//            Digraph dg = new Digraph(lines);
             int no = 0; //everyone's name map with a No
             while (no < total_num) {
                 String name = readAppointedLineNumber(file, lines);
@@ -138,7 +140,7 @@ public class Gift {
                 String name=readAppointedLineNumber(file,++lines);
                 int v2=map.get(name);
 
-                dg.setEdge(v1,v2,a);
+//                dg.setEdge(v1,v2,a);
                 b--;
             }
             br.close();
