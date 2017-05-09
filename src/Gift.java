@@ -35,19 +35,21 @@ public class Gift {
             System.exit(0);
         }
         int lines = 0;
+        String ss=null;
         while (s != null) {
             lines++;
             s = linereader.readLine();
             if ((lines - lineNumber) == 0) {
 //                lst_line.add(s);
-                System.out.println(s);
+//                System.out.println(s);
+                ss=s;
 //                System.exit(0);
             }
         }
 //        System.out.println(s);
         linereader.close();
         in.close();
-        return s;
+        return ss;
     }
 
     public static int getTotalLines(File file) throws IOException {
@@ -109,40 +111,41 @@ public class Gift {
             int no = 0; //everyone's name map with a No
             while (no < total_num) {
                 String name = readAppointedLineNumber(file, lines);
+                System.out.println(name);
                 map.put(name, no);
-                System.out.println("No: " + no + "\tName: " + name);
+//                System.out.println("No: " + no + "\tName: " + name);
                 no++;
                 lines++;
             }
             System.out.println("we have read to:" + lines + "\tlines");
 
-            //2. "dave" "200 3" "laura" "owen" "vick"
-
-            int v1 = map.get(readAppointedLineNumber(file, lines++));
-            String two = readAppointedLineNumber(file, lines++);
-            String[] two_array=two.split(" ");
-            int a,b=0;
-            for(int i=0;i<two_array.length;i++){
-                if(i==0) {
-                    a=Integer.parseInt(two_array[i]);
-                    System.out.println(two_array[i]);
-                    System.out.println("a: "+a);
-                }
-                else if(i==1){
-                    b=Integer.parseInt(two_array[i]);
-                    System.out.println(two_array[i]);
-                    System.out.println("b: "+b);
-                }
-
-            }
-
-            while(b<=0){
-                String name=readAppointedLineNumber(file,++lines);
-                int v2=map.get(name);
-
-//                dg.setEdge(v1,v2,a);
-                b--;
-            }
+//            //2. "dave" "200 3" "laura" "owen" "vick"
+//
+//            int v1 = map.get(readAppointedLineNumber(file, lines++));
+//            String two = readAppointedLineNumber(file, lines++);
+//            String[] two_array=two.split(" ");
+//            int a,b=0;
+//            for(int i=0;i<two_array.length;i++){
+//                if(i==0) {
+//                    a=Integer.parseInt(two_array[i]);
+//                    System.out.println(two_array[i]);
+//                    System.out.println("a: "+a);
+//                }
+//                else if(i==1){
+//                    b=Integer.parseInt(two_array[i]);
+//                    System.out.println(two_array[i]);
+//                    System.out.println("b: "+b);
+//                }
+//
+//            }
+//
+//            while(b<=0){
+//                String name=readAppointedLineNumber(file,++lines);
+//                int v2=map.get(name);
+//
+////                dg.setEdge(v1,v2,a);
+//                b--;
+//            }
             br.close();
             in.close();
 
