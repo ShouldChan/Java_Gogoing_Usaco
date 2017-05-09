@@ -35,14 +35,14 @@ public class Gift {
             System.exit(0);
         }
         int lines = 0;
-        String ss=null;
+        String ss = null;
         while (s != null) {
             lines++;
             s = linereader.readLine();
             if ((lines - lineNumber) == 0) {
 //                lst_line.add(s);
 //                System.out.println(s);
-                ss=s;
+                ss = s;
 //                System.exit(0);
             }
         }
@@ -91,6 +91,29 @@ public class Gift {
         }
     }
 
+    public static void process(int a, int b, int lines, File file, String[] two_array,int[][] matrix,int v1) throws IOException {
+        for (int i = 0; i < two_array.length; i++) {
+            if (i == 0) {
+                a = Integer.parseInt(two_array[i]);
+                System.out.println(two_array[i]);
+                System.out.println("a: " + a);
+            } else if (i == 1) {
+                b = Integer.parseInt(two_array[i]);
+                System.out.println(two_array[i]);
+                System.out.println("b: " + b);
+            }
+
+        }
+
+        while (b > 0) {
+            String name = readAppointedLineNumber(file, ++lines);
+            int v2 = map.get(name);
+            matrix[v1][v2] = a;
+            System.out.println(matrix[v1][v2]);
+            b--;
+        }
+    }
+
     public static void readTxtByLine() {
         File file = new File(IN_FILE + "gift1.in");
         try {
@@ -104,53 +127,166 @@ public class Gift {
             int lines = 2;    //start from the second, and map them
             int total_num = Integer.parseInt(eachline);   // convert str to int
             System.out.println("Total numbers of people: " + total_num);
-            int[][] matrix=new int[total_num][total_num];
+            int[][] matrix = new int[total_num][total_num];
 
 
 //            Digraph dg = new Digraph(lines);
             int no = 0; //everyone's name map with a No
             while (no < total_num) {
                 String name = readAppointedLineNumber(file, lines);
-                System.out.println(name);
+//                System.out.println(name);
                 map.put(name, no);
-//                System.out.println("No: " + no + "\tName: " + name);
+                System.out.println("No: " + no + "\tName: " + name);
                 no++;
                 lines++;
             }
-            System.out.println("we have read to:" + lines + "\tlines");
+            System.out.println("we have read to:\t" + lines + "\tlines");
 
-//            //2. "dave" "200 3" "laura" "owen" "vick"
-//
-//            int v1 = map.get(readAppointedLineNumber(file, lines++));
-//            String two = readAppointedLineNumber(file, lines++);
-//            String[] two_array=two.split(" ");
-//            int a,b=0;
-//            for(int i=0;i<two_array.length;i++){
-//                if(i==0) {
-//                    a=Integer.parseInt(two_array[i]);
-//                    System.out.println(two_array[i]);
-//                    System.out.println("a: "+a);
-//                }
-//                else if(i==1){
-//                    b=Integer.parseInt(two_array[i]);
-//                    System.out.println(two_array[i]);
-//                    System.out.println("b: "+b);
-//                }
-//
-//            }
-//
-//            while(b<=0){
-//                String name=readAppointedLineNumber(file,++lines);
-//                int v2=map.get(name);
-//
-////                dg.setEdge(v1,v2,a);
-//                b--;
-//            }
+            //2. "dave" "200 3" "laura" "owen" "vick"
+
+            int v1 = map.get(readAppointedLineNumber(file, lines++));
+            String two = readAppointedLineNumber(file, lines++);
+            String[] two_array = two.split(" ");
+            int a = 0, b = 0;
+//            process(a,b,lines,file,two_array,matrix,v1);
+            for (int i = 0; i < two_array.length; i++) {
+                if (i == 0) {
+                    a = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("a: " + a);
+                } else if (i == 1) {
+                    b = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("b: " + b);
+                }
+
+            }
+
+            while (b > 0) {
+                String name = readAppointedLineNumber(file, ++lines);
+                int v2 = map.get(name);
+                matrix[v1][v2] = a;
+                System.out.println(matrix[v1][v2]);
+                b--;
+            }
+
+            // "owen" "500 1" "dave"
+            v1 = map.get(readAppointedLineNumber(file, lines++));
+            two = readAppointedLineNumber(file, lines++);
+            two_array = two.split(" ");
+//            process(500,1,lines,file,two_array,matrix,v1);
+            for (int i = 0; i < two_array.length; i++) {
+                if (i == 0) {
+                    a = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("a: " + a);
+                } else if (i == 1) {
+                    b = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("b: " + b);
+                }
+
+            }
+
+            while (b > 0) {
+                String name = readAppointedLineNumber(file, ++lines);
+                int v2 = map.get(name);
+                matrix[v1][v2] = a;
+                System.out.println(matrix[v1][v2]);
+                b--;
+            }
+            // "amr" "150 2" "vick owen"
+            v1 = map.get(readAppointedLineNumber(file, lines++));
+            two = readAppointedLineNumber(file, lines++);
+            two_array = two.split(" ");
+//            process(500,1,lines,file,two_array,matrix,v1);
+            for (int i = 0; i < two_array.length; i++) {
+                if (i == 0) {
+                    a = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("a: " + a);
+                } else if (i == 1) {
+                    b = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("b: " + b);
+                }
+
+            }
+
+            while (b > 0) {
+                String name = readAppointedLineNumber(file, ++lines);
+                int v2 = map.get(name);
+                matrix[v1][v2] = a;
+                System.out.println(matrix[v1][v2]);
+                b--;
+            }
+
+            // "laura" "0 2" "amr vick"
+            v1 = map.get(readAppointedLineNumber(file, lines++));
+            two = readAppointedLineNumber(file, lines++);
+            two_array = two.split(" ");
+//            process(500,1,lines,file,two_array,matrix,v1);
+            for (int i = 0; i < two_array.length; i++) {
+                if (i == 0) {
+                    a = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("a: " + a);
+                } else if (i == 1) {
+                    b = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("b: " + b);
+                }
+
+            }
+
+            while (b > 0) {
+                String name = readAppointedLineNumber(file, ++lines);
+                int v2 = map.get(name);
+                matrix[v1][v2] = a;
+                System.out.println(matrix[v1][v2]);
+                b--;
+            }
+
+            // "vick" "0 0"
+            v1 = map.get(readAppointedLineNumber(file, lines++));
+            two = readAppointedLineNumber(file, lines++);
+            two_array = two.split(" ");
+//            process(500,1,lines,file,two_array,matrix,v1);
+            for (int i = 0; i < two_array.length; i++) {
+                if (i == 0) {
+                    a = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("a: " + a);
+                } else if (i == 1) {
+                    b = Integer.parseInt(two_array[i]);
+                    System.out.println(two_array[i]);
+                    System.out.println("b: " + b);
+                }
+
+            }
+
+            while (b > 0) {
+                String name = readAppointedLineNumber(file, ++lines);
+                int v2 = map.get(name);
+                matrix[v1][v2] = a;
+                System.out.println(matrix[v1][v2]);
+                b--;
+            }
             br.close();
             in.close();
+            // travse the matrix
+            for(int i=0;i<total_num;i++){
+                for(int j=0;j<total_num;j++){
+                    System.out.print(matrix[i][j]+"\t");
+                }
+                System.out.println();
+            }
+
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally {
+            System.out.println("still need to be improved");
         }
 
     }
