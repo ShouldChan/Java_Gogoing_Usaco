@@ -281,7 +281,7 @@ public class Gift {
                 }
                 System.out.println();
             }
-
+            //need to wirte in gitf1.out
 
         } catch (Exception ex) {
             ex.printStackTrace();
