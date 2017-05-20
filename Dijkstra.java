@@ -2,7 +2,7 @@
  * Created by shouldchan on 17-5-19.
  */
 public class Dijkstra {
-    public static Integer M = Integer.MAX_VALUE;
+    public static int M = Integer.MAX_VALUE;
 
     public static int[] Dijkstra(int[][] weight, int start) {
         int n = weight.length;
@@ -15,11 +15,13 @@ public class Dijkstra {
 
         shortPath[start] = 0;
         visited[start] = 1;
-
         for (int count = 1; count < n; count++) {
             int k = -1;
             int dmin = Integer.MAX_VALUE;
             for (int i = 0; i < n; i++) {
+                /**
+                 * 如果没有访问过的点，并且权重更小则添加进路径
+                 */
                 if (visited[i] == 0 && weight[start][i] < dmin) {
                     dmin = weight[start][i];
                     k = i;
@@ -63,7 +65,7 @@ public class Dijkstra {
         };
 
         int start = 0;
-        int[] shortPath = Dijkstra(weight2, start);
+        int[] shortPath = Dijkstra(weight1, start);
 
         for (int i = 0; i < shortPath.length; i++) {
             System.out.println(start + "-->" + i + "\t" + shortPath[i]);
