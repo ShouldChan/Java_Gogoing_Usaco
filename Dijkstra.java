@@ -14,6 +14,7 @@ public class Dijkstra {
         int[] visited = new int[n];
 
         shortPath[start] = 0;
+
         visited[start] = 1;
         for (int count = 1; count < n; count++) {
             int k = -1;
