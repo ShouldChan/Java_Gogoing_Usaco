@@ -1,5 +1,7 @@
 package com.cxj.usaco;
 
+import java.lang.reflect.GenericArrayType;
+
 /**
  * 
  * @author shouldchan 2017/10/23
@@ -15,14 +17,27 @@ public class Zeller {
 		// TODO Auto-generated method stub
 		Zeller ze = new Zeller();
 		int week = 0;
-		week = ze.zellerDayOfWeek(2017, 10, 22);
-		System.out.println(week);
-		week = ze.zellerDayOfWeek(2006, 7, 21);
-		System.out.println(week);
+		// week = ze.zellerDayOfWeek(2017, 10, 22);
+		// System.out.println(week);
+		// week = ze.zellerDayOfWeek(2006, 7, 21);
+		// System.out.println(week);
 
 		String date1 = "2012-02-26";
 		String date2 = "2012-03-01";
-		ze.generateDate(date1, date2);
+		ArrayList<String> result = new ArrayList<String>();
+		result = ze.generateDate(date1, date2);
+
+		for (int i = 0; i < result.size(); i++) {
+			// System.out.println(result.get(i).getClass());
+			System.out.println(result.get(i));
+			int[] ymd = new int[3];
+			ymd = ze.getYMD(result.get(i));
+			int year = ymd[0];
+			int month = ymd[1];
+			int day = ymd[2];
+			week = ze.zellerDayOfWeek(year, month, day);
+			System.out.println(week);
+		}
 
 	}
 
@@ -68,13 +83,13 @@ public class Zeller {
 			date1 = date2;
 			date2 = tmp;
 		}
-		System.out.println(str2Date(date1));
-		System.out.println(str2Date(date1).getTime());
+		// System.out.println(str2Date(date1));
+		// System.out.println(str2Date(date1).getTime());
 		tmp = format.format(str2Date(date1).getTime() + 3600 * 24 * 1000);
 
 		int num = 0;
 		while (tmp.compareTo(date2) < 0) {
-			System.out.println(tmp);
+			// System.out.println(tmp);
 			result.add(tmp);
 			num++;
 			tmp = format.format(str2Date(tmp).getTime() + 3600 * 24 * 1000);
@@ -84,6 +99,19 @@ public class Zeller {
 		}
 		return result;
 
+	}
+
+	// function: to transfer "2012-12-21" into "year""month""day"
+	public int[] getYMD(String strDate) {
+		String[] tmp = strDate.split("-");
+		int year = Integer.valueOf(tmp[0]).intValue();
+		int month = Integer.valueOf(tmp[1]).intValue();
+		int day = Integer.valueOf(tmp[2]).intValue();
+		int[] ymd = new int[3];
+		ymd[0] = year;
+		ymd[1] = month;
+		ymd[2] = day;
+		return ymd;
 	}
 
 }
