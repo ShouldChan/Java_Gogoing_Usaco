@@ -11,19 +11,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Zeller {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Zeller ze = new Zeller();
 		int week = 0;
-		// week = ze.zellerDayOfWeek(2017, 10, 22);
-		// System.out.println(week);
-		// week = ze.zellerDayOfWeek(2006, 7, 21);
-		// System.out.println(week);
+		// save the count in day of week
+		// 0: Sunday --------- 6: Saturday
+		// week = ze.zellerDayOfWeek(1900, 1, 26);
+		// System.out.println("week:" + week);
+		int[] week_count = new int[7];
 
-		String date1 = "2012-02-26";
-		String date2 = "2012-03-01";
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		int end_year = 1900 + n - 1;
+		String str_year = String.valueOf(end_year);
+		String date1 = "1900-01-01";
+		String date2 = str_year + "-12-31";
 		ArrayList<String> result = new ArrayList<String>();
 		result = ze.generateDate(date1, date2);
 
@@ -36,19 +42,29 @@ public class Zeller {
 			int month = ymd[1];
 			int day = ymd[2];
 			week = ze.zellerDayOfWeek(year, month, day);
-			System.out.println(week);
+			// System.out.println("week:" + week);
+			// System.out.println("week_count:" + week_count[2]);
+			week_count[week] += 1;
 		}
-
+		System.out.println(week_count[6] + " " + week_count[0] + " " + week_count[1] + " " + week_count[2] + " "
+				+ week_count[3] + " " + week_count[4] + " " + week_count[5] + " ");
 	}
 
-	// function: use Zeller to calc the ith day of week
+	// function: use Zeller to calc the i_th day of week
 	public int zellerDayOfWeek(int year, int month, int day) {
-		int week = 0;
+		if (month == 1) {
+			month = 13;
+			year--;
+		}
+		if (month == 2) {
+			month = 14;
+			year--;
+		}
 		int century = year / 100;
 		year = year % 100;
-		week = year + year / 4 + century / 4 - 2 * century + (26 * (month + 1)) / 10 + day - 1;
-		// System.out.println(week);
+		int week = year + year / 4 + century / 4 - 2 * century + (26 * (month + 1)) / 10 + day - 1;
 		week = week % 7;
+		week = Math.abs(week);
 		return week;
 	}
 
@@ -71,6 +87,7 @@ public class Zeller {
 	// function: use Date to generate dates from A to B
 	public ArrayList<String> generateDate(String date1, String date2) {
 		ArrayList<String> result = new ArrayList<String>();
+		result.add(date1);
 
 		if (date1.equals(date2)) {
 			System.out.println("The two dates are the same.");
@@ -97,6 +114,7 @@ public class Zeller {
 		if (num == 0) {
 			System.out.println("The two dates are the neighbouring.");
 		}
+		result.add(date2);
 		return result;
 
 	}
