@@ -20,7 +20,7 @@ public class Zeller {
 		int week = 0;
 		// save the count in day of week
 		// 0: Sunday --------- 6: Saturday
-		// week = ze.zellerDayOfWeek(1900, 1, 26);
+		// week = ze.zellerDayOfWeek(2017, 10, 13);
 		// System.out.println("week:" + week);
 		int[] week_count = new int[7];
 
@@ -31,7 +31,7 @@ public class Zeller {
 		String date1 = "1900-01-01";
 		String date2 = str_year + "-12-31";
 		ArrayList<String> result = new ArrayList<String>();
-		result = ze.generateDate(date1, date2);
+		result = ze.getDate(date1, date2);
 
 		for (int i = 0; i < result.size(); i++) {
 			// System.out.println(result.get(i).getClass());
@@ -48,6 +48,28 @@ public class Zeller {
 		}
 		System.out.println(week_count[6] + " " + week_count[0] + " " + week_count[1] + " " + week_count[2] + " "
 				+ week_count[3] + " " + week_count[4] + " " + week_count[5] + " ");
+	}
+
+	// function: get each year 's 13th as result days
+	public ArrayList<String> getDate(String date1, String date2) {
+		ArrayList<String> result = new ArrayList<String>();
+		String[] start_tmp = date1.split("-");
+		int start_year = Integer.valueOf(start_tmp[0]).intValue();
+		int start_month = Integer.valueOf(start_tmp[1]).intValue();
+		String[] end_tmp=date2.split("-");
+		int end_year=Integer.valueOf(end_tmp[0]).intValue();
+		int end_month= Integer.valueOf(end_tmp[1]).intValue();
+//		String str_13thday="13";
+		for (int i=start_year;i<=end_year;i++) {
+			String year=String.valueOf(i);
+			for (int j=1;j<=12;j++) {
+				String month = String.valueOf(j);
+				String date= year+"-"+month+"-"+"13";
+				result.add(date);
+			}
+		}
+
+		return result;
 	}
 
 	// function: use Zeller to calc the i_th day of week
@@ -87,7 +109,7 @@ public class Zeller {
 	// function: use Date to generate dates from A to B
 	public ArrayList<String> generateDate(String date1, String date2) {
 		ArrayList<String> result = new ArrayList<String>();
-		result.add(date1);
+		// result.add(date1);
 
 		if (date1.equals(date2)) {
 			System.out.println("The two dates are the same.");
@@ -114,7 +136,7 @@ public class Zeller {
 		if (num == 0) {
 			System.out.println("The two dates are the neighbouring.");
 		}
-		result.add(date2);
+		// result.add(date2);
 		return result;
 
 	}
